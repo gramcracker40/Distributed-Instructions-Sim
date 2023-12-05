@@ -50,14 +50,14 @@ if __name__ == "__main__":
 
         #### Receiver Code Example
 
-    # receiver = Receiver(
-    #     host=host,
-    #     port=port,
-    #     exchange=exchange,
-    #     user=user,
-    #     pword=pword,
-    #     routing_keys="hex2",
-    # )
-    # receiver=Receiver(config="commsConfig.json")
-    # receiver.start_consuming()
+    receiver = Receiver(
+        host=host,
+        port=port,
+        exchange=exchange,
+        user=user,
+        pword=pword,
+        routing_keys="hex2",
+    )
+    receiver=Receiver(config="commsConfig.json")
+    receiver.start_consuming()
     decoder = Decoder(config="commsConfig.json", callback=processMessage)

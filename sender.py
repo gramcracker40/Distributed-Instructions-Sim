@@ -2,7 +2,6 @@ from comms import Sender
 import sys
 import json
 from rich import print
-from generate_assembly import GenerateAssembly
 
 #Poka, SlipperyDragon149!!!
 
@@ -29,11 +28,8 @@ if __name__ == "__main__":
     #     print(sys.argv)
     #     host, port, exchange, routing_key, message, num = sys.argv[1:7]
 
+    print(config)
     sender = Sender(**config)
     print(config)
         
-    hex = []
-    for i in range(10):
-        hex.append(GenerateAssembly())
-        
-    sender.send_message(message=json.dumps(hex),routing_key="hex2",host=rabbitmq_host,port=rabbitmq_port,exchange=rabbitmq_exch)
+    sender.send_message(message="Hellooooo",routing_key="hex2",host=rabbitmq_host,port=rabbitmq_port,exchange=rabbitmq_exch)

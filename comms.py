@@ -17,19 +17,23 @@ class Comms:
             pword (str): Password for the RabbitMQ server
             routing_keys (list<str>): List of routing keys to bind to
         """
+        print(f"Kwargs: {kwargs}")
         config = kwargs.get("config", None)
         if config:
             with open(config) as f:
+                print(f"Here 1 ")
                 config = json.load(f)
             for k,v in config.items():
                 self.__dict__[k] = v
         else:
-            self.host = kwargs.get("host", config["host"])
-            self.port = kwargs.get("port", config["port"])
-            self.exchange = kwargs.get("exchange", config["exchange"])
-            self.user = kwargs.get("user", config["user"])
-            self.pword = kwargs.get("pword", config["pword"])
-            self.routing_keys = kwargs.get("routing_keys", config["routing_keys"])
+            print(f"Here 2 ")
+
+            self.host = kwargs.get("host")
+            self.port = kwargs.get("port")
+            self.exchange = kwargs.get("exchange")
+            self.user = kwargs.get("user")
+            self.pword = kwargs.get("pword")
+            self.routing_keys = kwargs.get("routing_keys")
         if not isinstance(self.routing_keys, list):
             self.routing_keys = self.routing_keys.split(",")
         self.connection = None
