@@ -3,6 +3,7 @@ from env import instructions
 from env import opcodes
 from register import Register
 from alu import ALU
+import re
 
 class CPU:
     def __init__(self, num_registers) -> None:
@@ -13,29 +14,41 @@ class CPU:
         for instruction in instructions:
             parts = instruction.split()
             opcode = parts[0]
-            operands = ' '.join(parts[1:])
+            operands = parts[1:]
             # print("LINE: " + str(line))
             # print("PARTS: " + str(parts))
             # print("OPCODE: " + str(opcode))
             # print("OPERANDS: " + str(operands))
 
-            # self.execute_instruction(opcode, operands)
-            print("Registers")
+            self.execute_instruction(opcode, operands)
+            # print("Registers")
             # for register in self.registers:
                 # print(register.read())
             
 
     def execute_instruction(self, opcode, operands):
         if opcode == "LOAD":
-            self.load(operands[0])
+            print(operands)
+            self.load(operands[0], operands[1])
         
-        if opcode == "MOVE":
-            self.write(operands[0], operands[1])
         # return {"STORE":[], "xy": []}
     
-    def load(self, register):
+    def load(self, register, value):
+        # Regular expression pattern to match the numbers after "R"
+        pattern = r'R(\d+)'
+        index = 0
+
+        # Extract numbers from each string
+        match = re.search(pattern, register)
+        if match:
+            index = int(match.group(1))
+        else:
+            print(f"ERROR: Register: {register}, No match found")
+
+        self.registers[index].write(value)
+
+    def read(self, register):
         print(register)
         return self.registers[int(register[1])].read()
     
-    def write(self, register, value):
-        self.registers[str(register[1])].write(value)
+    

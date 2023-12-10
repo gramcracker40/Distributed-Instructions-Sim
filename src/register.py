@@ -1,3 +1,6 @@
+from typing import Any
+
+
 class Register:
     def __init__(self) -> None:
         self.value = 0
