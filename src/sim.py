@@ -1,5 +1,6 @@
 from cpu import CPU
 
 if __name__ == "__main__":
-    cpu = CPU(10)
-    cpu.parse_instruction()
+    cpu = CPU(11)
+    store = cpu.parse_instruction()
+    print(store)

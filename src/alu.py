@@ -1,21 +1,21 @@
 class ALU:
-    def execute(self, operation, operands) -> int:
+    def execute(self, operation, value1, value2) -> int:
         # Addition
         if operation == "ADD":
-            return operands[0] + operands[1]
+            return value1 + value2
 
         # Subtraction
         if operation == "SUB":
-            return operands[0] - operands[1]
+            return value1 - value2
 
         # Multiplication
         if operation == "MUL":
-            return operands[0] * operands[1]
+            return value1 * value2
 
         # Division
         if operation == "DIV":
-            return operands[0] / operands[1]
+            return value1 / value2
 
         # Absolute Subtraction
         if operation == "ASUB":
-            return abs(operands[0] - operands[1])
+            return abs(value1 - value2)
